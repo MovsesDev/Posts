@@ -1,14 +1,14 @@
 .post-card-container {
-    .image {
-        width: 20px;
-        height: 20px;
-        color: red;
-    }
-  padding: 5px;
-  width: 20%;
-  margin: 15px;
-  display: grid;
-  border: 1px solid blue;
-  grid-template-columns: 100px 170px 60px;
-  grid-template-rows: 20px 40px;
+display: flex;
+justify-content: space-between;
+width: 450px;
+height: 65px;
+border: 1px solid gray;
+margin: 15px;
+align-items: center;
+overflow: hidden;
+  img {
+      width: 60px;
+      height: 60px;
+  }
 }

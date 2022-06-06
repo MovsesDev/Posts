@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import PostCard from '../components/PostCard/PostCard'
 import { receivePosts } from '../features/PostSlice'
 import { useAppDispatch, useAppSelector } from '../hooks'
-
+import './HomePage.scss'
 
 const HomePage = () => {
 
@@ -16,8 +16,8 @@ const HomePage = () => {
 
 
   return (
-    <div>
-      {posts.map(p => <PostCard name={p.name} description={p.description} />)}
+    <div className='HomePage'>
+      {posts.map(p => <PostCard name={p.name} description={p.description} image={p.image}/>)}
     </div>
   )
 }

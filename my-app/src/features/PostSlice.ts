@@ -4,7 +4,9 @@ import { getPosts } from '../api/api'
 interface IInitialState {
     posts: {
         name: string,
-    description: string
+    description: string,
+    image: string,
+    id: string
     }[]
     
 }
@@ -15,6 +17,8 @@ interface IInitialState {
         return getPosts()
     }
 )
+
+
 
 const initialState : IInitialState = {
     posts: [] 

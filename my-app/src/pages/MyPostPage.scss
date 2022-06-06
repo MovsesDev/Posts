@@ -1,0 +1,12 @@
+.MyPosts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    .form {
+        display: flex;
+        flex-direction: column;
+        max-width: 200px;
+
+    }
+}

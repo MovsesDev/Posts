@@ -5,11 +5,11 @@ import './Navbar.scss'
 
 const Navbar: React.FC = () => {
   return (
-    <>
+    <div className='navbar'>
     <NavLink to='/'> Main</NavLink>
-    <NavLink to='/addPost'> Add post</NavLink>
+    <NavLink to='/myPosts'> My posts</NavLink>
     <NavLink to='/editPost'> Edit post</NavLink>
-    </>
+    </div>
   )
 }
 

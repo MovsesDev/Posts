@@ -1,47 +1,88 @@
-import { log } from 'console';
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getPosts } from '../api/api'
+import { getPosts, deletePost, addPost, editPost } from "../api/api";
+
 interface IInitialState {
-    posts: {
-        name: string,
-    description: string,
-    image: string,
-    id: string
-    }[]
-    
+  posts: {
+    name: string;
+    description: string;
+    image: string;
+    id: string;
+  }[];
 }
 
- export const receivePosts = createAsyncThunk(
-    'posts/getPosts',
-    () => {
-        return getPosts()
-    }
-)
+export const fetchPostsTC = createAsyncThunk("posts/fetchPosts", () => {
+  return getPosts();
+});
 
+export const deletePostTC = createAsyncThunk(
+  "posts/deletePost",
+  async (id: string, { dispatch }) => {
+    dispatch(removePostAC(id));
+    return deletePost(id);
+  }
+);
 
+export const addNewPostTC = createAsyncThunk(
+  "posts/addNewPost",
+  async (post: { id: number; name: string | null ; description: string | null}, { dispatch }) => {
+    const data = await addPost(post);
+    dispatch(fetchPostsTC())
+   return data;
+  }
+);
 
-const initialState : IInitialState = {
-    posts: [] 
-}
+export const editPostTC = createAsyncThunk(
+  "posts/editPostTC",
+  async (post: { id: string; name: string; description: string }, { dispatch }) => {
+    // dispatch(editPostAC({name: post.name, description: post.description}))
+    const data = await editPost(post)
+    dispatch(fetchPostsTC())
+    return data
+  }
+);
+
+const initialState: IInitialState = {
+  posts: [],
+};
 
 const postSlice = createSlice({
-    name: 'posts',
-    initialState,
-    reducers: {
-        
-    }, extraReducers: (builder) => {
-        builder.addCase(receivePosts.pending, (state, action) => {
-            console.log('pending');
-            
-        }).addCase(receivePosts.rejected, (state, action) => {
-            console.log('rejected');
-            
-        }).addCase(receivePosts.fulfilled, (state, action) => {
-            state.posts = action.payload
-        })
-    }
-})
+  name: "posts",
+  initialState,
+  reducers: {
+    // addPostAC(state, action) {
+    //   state.posts.push(action.payload);
+    // },
+    removePostAC(state, action) {
+      state.posts = state.posts.filter((p) => p.id !== action.payload);
+    },
+    // editPostAC(state, action) {
+    //   state.posts.map(p => {
+    //     if (p.description !== action.payload.description) {
+    //       p.description = action.payload.description
+    //     }
+    //     if (p.name !== action.payload.name) {
+    //       p.name = action.payload.name
+    //     }
+    //   })
+    // }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchPostsTC.pending, (state, action) => {
+        console.log("pending");
+      })
+      .addCase(fetchPostsTC.rejected, (state, action) => {
+        console.log("rejected");
+      })
+      .addCase(fetchPostsTC.fulfilled, (state, action) => {
+        state.posts = action.payload;
+      })
+      // .addCase(addNewPostTC.fulfilled, (state, action) => {
+      //   state.posts = action.payload;
+      // });
+  },
+});
 
-export const {} = postSlice.actions
+export const { removePostAC } = postSlice.actions;
 
-export default postSlice
+export default postSlice;

@@ -1,0 +1,33 @@
+.ModalForm {
+  height: 100vh;
+  width: 100vw;
+  background-color: #fff;
+
+  .form {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+
+    input {
+      border: 5px solid red;
+      height: 20px;
+      width: 300px;
+
+    }
+    
+    button {
+      padding: 10px;
+      font-size: 20px;
+      margin: 5px;
+    }
+  }
+  .buttons button:first-child:hover {
+    background-color: green;
+  }
+  .buttons button:last-child:hover {
+    background-color: red;
+  }
+}

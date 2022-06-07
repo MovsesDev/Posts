@@ -1,66 +1,56 @@
 import React, { useEffect, useState } from "react";
 import { deletePost, editPost } from "../api/api";
+import ModalFrom from "../common/ModalFrom";
 import PostCard from "../components/PostCard/PostCard";
-import { receivePosts } from "../features/PostSlice";
+import {
+  deletePostTC,
+  editPostTC,
+  fetchPostsTC,
+  removePostAC,
+} from "../features/PostSlice";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import "./EditPage.scss";
 
 const EditPage = () => {
   const dispatch = useAppDispatch();
   const posts = useAppSelector((state) => state.posts.posts);
-  const [editing, setEditing] = useState("");
-  const [user, setUser] = useState("");
-  const [description, setDescription] = useState("");
+  const [editing, setEditing] = useState<string>("");
+  const [showPopUp, setShowPopUp] = useState(false);
 
   useEffect(() => {
-    dispatch(receivePosts());
-  }, [posts]);
+    dispatch(fetchPostsTC());
+  }, []);
 
   const handleEdit = (id: string) => {
     setEditing(id);
+    setShowPopUp(true)
   };
 
-  const handleEditSubmit = (id: string) => {
-    editPost(id, user, description)
-    setEditing('')
-    setDescription('')
-    setUser('')
+  const handleDelete = (id: string) => {
+    dispatch(deletePostTC(id));
   };
+
 
   return (
     <div className="EditPage">
       {posts.map((p) => (
-        <div>
+        <React.Fragment key={p.id}>
           {editing === p.id ? (
-            <section>
-              <label htmlFor="username">Username:</label>
-              <input
-                type="text"
-                value={user}
-                onChange={(e) => setUser(e.target.value)}
-              />
-              <br />
-              <label htmlFor="description">Description:</label>
-              <input
-                type="text"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              />
-              <br />
-              <button onClick={() => handleEditSubmit(p.id)}>Submit</button>
-            </section>
+            <section>{showPopUp && <ModalFrom setShowPopUp={setShowPopUp} setEditing={setEditing} id={editing}/>}</section>
           ) : (
             <section>
               <PostCard
+                key={p.id}
                 name={p.name}
                 description={p.description}
                 image={p.image}
+                
               />
               <button onClick={() => handleEdit(p.id)}>Edit</button>
-              <button onClick={() => deletePost(p.id)}>Delete</button>
+              <button onClick={() => handleDelete(p.id)}>Delete</button>
             </section>
           )}
-        </div>
+        </React.Fragment>
       ))}
     </div>
   );

@@ -51,7 +51,7 @@ const ModalFrom: React.FC<ModalFormProps> = ({
         <br />
         <div className="buttons">
           <button onClick={() => handleEditSubmit(id)}>Submit</button>
-          <button onClick={() => setShowPopUp(false)}>Cancel</button>
+          <button onClick={() => setEditing('')}>Cancel</button>
         </div>
       </form>
     </div>

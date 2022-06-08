@@ -5,6 +5,8 @@ import EditPage from './pages/EditPage';
 import HomePage from './pages/HomePage';
 import './App.scss'
 import MyPostPage from './pages/MyPostPage';
+import Register from './components/Register/Register';
+import Login from './components/Login/Login';
 
 const  App: React.FC = () => {
   return (
@@ -13,6 +15,8 @@ const  App: React.FC = () => {
     <Navbar />
     <Routes>
       <Route path='/' element={<HomePage/>}/>
+      <Route path='/register' element={<Register/>}/>
+      <Route path='/login' element={<Login/>}/>
       <Route path='/myPosts' element={<MyPostPage/>}/>
       <Route path='/editPost' element={<EditPage/>}/>
     </Routes>

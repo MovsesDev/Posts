@@ -1,5 +1,4 @@
 import axios from "axios";
-import { stringify } from "querystring";
 import { loginUser } from "./login-server";
 
 const instance = axios.create({
@@ -75,8 +74,7 @@ export const login = async (email: string, password: string) => {
       email,
       password,
     )
-    console.log(res)
-    // return res.data;
+    return res;
   } catch (e) {
     console.log(e);
   }

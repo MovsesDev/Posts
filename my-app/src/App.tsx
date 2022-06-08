@@ -7,10 +7,12 @@ import './App.scss'
 import MyPostPage from './pages/MyPostPage';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
+import { useAppSelector } from './hooks';
 
 const  App: React.FC = () => {
   return (
     <div className='App'>
+      {/* {isAuth ? <div>You logged in</div> : <div>No</div>} */}
     <BrowserRouter>
     <Navbar />
     <Routes>

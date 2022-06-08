@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getPosts, deletePost, addPost, editPost } from "../api/api";
+import { getPosts, deletePost, addPost, editPost, login } from "../api/api";
 
 interface IInitialState {
   posts: {
@@ -8,6 +8,7 @@ interface IInitialState {
     image: string;
     id: string;
   }[];
+  isAuth: boolean;
 }
 
 export const fetchPostsTC = createAsyncThunk("posts/fetchPosts", () => {
@@ -47,8 +48,18 @@ export const editPostTC = createAsyncThunk(
   }
 );
 
+export const loginTC = createAsyncThunk(
+  "posts/loginTC",
+  async (user: { email: string; password: string }, { dispatch }) => {
+    const res = await login(user.email, user.password);
+    dispatch(setIsAuth(true));
+    return res;
+  }
+);
+
 const initialState: IInitialState = {
   posts: [],
+  isAuth: false,
 };
 
 const postSlice = createSlice({
@@ -57,6 +68,9 @@ const postSlice = createSlice({
   reducers: {
     removePostAC(state, action) {
       state.posts = state.posts.filter((p) => p.id !== action.payload);
+    },
+    setIsAuth(state, action) {
+      state.isAuth = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -73,6 +87,6 @@ const postSlice = createSlice({
   },
 });
 
-export const { removePostAC } = postSlice.actions;
+export const { removePostAC, setIsAuth } = postSlice.actions;
 
 export default postSlice;

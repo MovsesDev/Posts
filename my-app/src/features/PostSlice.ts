@@ -17,6 +17,7 @@ export const fetchPostsTC = createAsyncThunk("posts/fetchPosts", () => {
 export const deletePostTC = createAsyncThunk(
   "posts/deletePost",
   async (id: string, { dispatch }) => {
+    
     dispatch(removePostAC(id));
     return deletePost(id);
   }

@@ -1,14 +1,30 @@
-.post-card-container {
-display: flex;
-justify-content: space-between;
-width: 450px;
-height: 65px;
-border: 1px solid gray;
-margin: 15px;
-align-items: center;
-overflow: hidden;
+.PostCard {
+  display: flex;
+  justify-content: space-between;
+  width: 750px;
+  height: 125px;
+  border: 1px solid gray;
+  margin: 15px;
+  align-items: center;
+  font-size: 20px;
+  overflow: hidden;
+  transition: all 0.2s;
   img {
-      width: 60px;
-      height: 60px;
+    width: 160px;
+    height: 160px;
+  }
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    button {
+      color: black;
+      background-color: white;
+    }
+  }
+  .buttons button:first-child:hover {
+    color: green;
+  }
+  .buttons button:last-child:hover {
+    color: red;
   }
 }

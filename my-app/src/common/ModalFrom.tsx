@@ -1,22 +1,25 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { editPostTC } from "../features/PostSlice";
-import { useAppDispatch } from "../hooks";
+import { useAppDispatch, useAppSelector } from "../hooks";
 import "./ModalFrom.scss";
 
 interface ModalFormProps {
-  //setEditing: Dispatch<SetStateAction<string>>;
   setEditing: (id: string) => void;
   id: string;
   setShowPopUp: (popUp: boolean) => void;
+  name: string;
+  desc: string
 }
 
 const ModalFrom: React.FC<ModalFormProps> = ({
   setEditing,
   id,
   setShowPopUp,
+  name,
+  desc
 }) => {
-  const [user, setUser] = useState("");
-  const [description, setDescription] = useState("");
+  const [user, setUser] = useState(name);
+  const [description, setDescription] = useState(desc);
   const dispatch = useAppDispatch();
 
   const handleEditSubmit = (id: string) => {
@@ -27,13 +30,8 @@ const ModalFrom: React.FC<ModalFormProps> = ({
     };
     dispatch(editPostTC(post));
     setEditing("");
-    setDescription("");
-    setUser("");
   };
 
-  const handleDelete = (id: string) => {
-    //dispatch(deletePostTC(id));
-  };
   return (
     <div className="ModalForm">
       <form className="form">

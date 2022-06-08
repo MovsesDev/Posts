@@ -18,36 +18,9 @@ const EditPage = () => {
 
   return (
     <div>
-      {/* {editing ? (
-        <section>
-          <ModalFrom
-            setShowPopUp={setShowPopUp}
-            setEditing={setEditing}
-            id={editing}
-          />
-        </section>
-      ) : (
-        <div className="EditPage">
-          {posts.map((p) => (
-            <React.Fragment key={p.id}>
-              <section>
-                <PostCard
-                  key={p.id}
-                  name={p.name}
-                  description={p.description}
-                  image={p.image}
-                  id={p.id}
-                  setEditing={setEditing}
-                  setShowPopUp={setShowPopUp}
-                />
-              </section>
-            </React.Fragment>
-          ))}
-        </div>
-      )} */}
+
       {posts.map(p =>  editing == p.id ? ( <section>
           <ModalFrom
-            setShowPopUp={setShowPopUp}
             setEditing={setEditing}
             id={editing}
             name={p.name}

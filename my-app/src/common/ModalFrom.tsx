@@ -6,7 +6,6 @@ import "./ModalFrom.scss";
 interface ModalFormProps {
   setEditing: (id: string) => void;
   id: string;
-  setShowPopUp: (popUp: boolean) => void;
   name: string;
   desc: string
 }
@@ -14,7 +13,6 @@ interface ModalFormProps {
 const ModalFrom: React.FC<ModalFormProps> = ({
   setEditing,
   id,
-  setShowPopUp,
   name,
   desc
 }) => {

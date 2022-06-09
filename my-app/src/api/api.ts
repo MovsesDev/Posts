@@ -8,8 +8,6 @@ const instance = axios.create({
 export const getPosts = async () => {
   try {
     const res = await instance.get("goods");
-    console.log(res.data);
-
     return res.data;
   } catch (e) {
     console.log(e);
@@ -73,7 +71,7 @@ export const login = async (email: string, password: string) => {
       instance,
       email,
       password,
-    )
+    )        
     return res;
   } catch (e) {
     console.log(e);

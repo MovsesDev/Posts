@@ -52,7 +52,9 @@ export const loginTC = createAsyncThunk(
   "posts/loginTC",
   async (user: { email: string; password: string }, { dispatch }) => {
     const res = await login(user.email, user.password);
-    dispatch(setIsAuth(true));
+    if(res !== undefined) {
+      dispatch(setIsAuth(true));
+    }
     return res;
   }
 );

@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {login, signup } from "../../api/api";
-import { loginTC } from "../../features/PostSlice";
 import * as s from "./RegisterStyled";
 const Register = () => {
-  const [email, setEmail] = useState<string | undefined>();
-  const [password, setPassword] = useState<string | undefined>();
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
-
+const navigate = useNavigate()
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    signup(email!, password!)
-    
+    signup(email, password)
+    navigate('/login')
     
   };
 

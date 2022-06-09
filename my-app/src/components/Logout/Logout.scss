@@ -1,0 +1,27 @@
+.modalLogout {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(1,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .modalLogout-inner {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    height: 50px;
+    width: 150px;
+    background-color: white;
+
+    button {
+      padding: 0;
+      border: 0;
+      background: none;
+      color: red;
+
+    }
+  }
+}

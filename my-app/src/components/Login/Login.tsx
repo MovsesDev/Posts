@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { loginTC } from "../../features/PostSlice";
 import * as s from "../Register/RegisterStyled";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const isAuth = useAppSelector(state => state.posts.isAuth)
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -13,8 +16,10 @@ const Login = () => {
       email,
       password,
     };
-    loginTC(user);
-    navigate('/')
+    dispatch(loginTC(user));
+    if(isAuth) {
+      navigate("/");
+    }
   };
 
   return (

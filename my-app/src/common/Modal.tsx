@@ -10,7 +10,7 @@ interface ModalProps {
 
 const Modal: React.FC<ModalProps> = ({isVisible, onCancelPress}) => {
   return (
-    <s.ModalWrap isVisible={{}}>
+    <s.ModalWrap isVisible={null}>
 
     </s.ModalWrap>
   )

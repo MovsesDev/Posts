@@ -5,17 +5,19 @@ interface ModalWrapProps {
 }
 
 export const ModalWrap = styled.div<ModalWrapProps>`
-  height: 100vh;
-  width: 100vw;
-  /* background-color: ${(props) => props.isVisible !== null
-    ? 'white'
-    : 'white'}; */
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
+${props => props.isVisible !== null 
+? `height: 100vh;
+width: 100vw;
+background-color: rgba(0,0,0,0,4);
+position: fixed;
+top: 0;
+left: 0;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;` : `
+`}
+`
+  
+
 

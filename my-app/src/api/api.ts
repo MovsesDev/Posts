@@ -16,13 +16,14 @@ export const getPosts = async () => {
 
 export const addPost = async (post: {
   id: number;
-  name: string | null;
-  description: string | null;
+  name: string;
+  description: string;
+  author: string
 }) => {
   try {
-    const res = await instance.post("goods", post);
-    const data = getPosts();
-    return data;
+    const res = await instance.post("goods/", post);
+    getPosts();
+        return res;
   } catch (e) {
     console.log(e);
   }
@@ -30,7 +31,7 @@ export const addPost = async (post: {
 
 export const deletePost = async (id: string) => {
   try {
-    const res = await instance.delete(id);
+    const res = await instance.delete('goods/' + id);
     return res.data;
   } catch (e) {
     console.log(e);
@@ -43,7 +44,7 @@ export const editPost = async (post: {
   description: string;
 }) => {
   try {
-    const res = await instance.put(post.id, {
+    const res = await instance.put(`goods/` + post.id, {
       name: post.name,
       description: post.description,
     });

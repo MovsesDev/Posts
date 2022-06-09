@@ -2,21 +2,34 @@ import React from "react";
 import { deletePostTC } from "../../features/PostSlice";
 import { useAppDispatch } from "../../hooks";
 import "./PostCard.scss";
-interface PostCardProps {
+export type Post =  {
   name: string;
   description: string;
   image: string;
-  id: string,
-  setEditing: (id: string) => void | undefined, 
-  setShowPopUp: (bool: boolean) => void | undefined,
+  id: string;
+};
+
+interface PostCardProps {
+  post: Post;
+  userId?: string;
+  setCurrentPost?: (post: Post) => void | undefined;
+  setEditing?: (id: string) => void | undefined;
+  setShowPopUp?: (bool: boolean) => void | undefined;
 }
 
-const PostCard: React.FC<PostCardProps> = ({ name, description, image, id, setEditing, setShowPopUp }) => {
-  const dispatch = useAppDispatch()
+const PostCard: React.FC<PostCardProps> = ({
+  post,
+  userId,
+  setShowPopUp,
+  setCurrentPost,
+}) => {
+  const dispatch = useAppDispatch();
 
-    const handleEdit = (id: string) => {
-    setEditing(id);
-    setShowPopUp(true);
+  const handleEdit = (post: Post) => {
+    if (setShowPopUp && setCurrentPost) {
+      setCurrentPost(post);
+      setShowPopUp(true);
+    }
   };
 
   const handleDelete = (id: string) => {
@@ -26,14 +39,15 @@ const PostCard: React.FC<PostCardProps> = ({ name, description, image, id, setEd
   return (
     <div className="PostCard">
       <div className="image">
-        <img src={image} />
+        <img src={post.image} />
       </div>
-      <div className="post-name">{name}</div>
-      <div className="post-desc">{description}</div>
+      <div className="post-name">{post.name}</div>
+      <div className="post-desc">{post.description}</div>
+     {userId &&
       <div className="buttons">
-        <button onClick={() => handleEdit(id)}>Edit</button>
-        <button onClick={() => handleDelete(id)}>Delete</button>
-      </div>
+        <button onClick={() => handleEdit(post)}>Edit</button>
+        <button onClick={() => handleDelete(post.id)}>Delete</button>
+      </div>}
     </div>
   );
 };

@@ -7,8 +7,10 @@ interface IInitialState {
     description: string;
     image: string;
     id: string;
+    author: string
   }[];
   isAuth: boolean;
+  userId: string
 }
 
 export const fetchPostsTC = createAsyncThunk("posts/fetchPosts", () => {
@@ -19,7 +21,7 @@ export const deletePostTC = createAsyncThunk(
   "posts/deletePost",
   async (id: string, { dispatch }) => {
     const data = await deletePost(id);
-    dispatch(removePostAC(id));
+    dispatch(fetchPostsTC());
     return data;
   }
 );
@@ -27,7 +29,7 @@ export const deletePostTC = createAsyncThunk(
 export const addNewPostTC = createAsyncThunk(
   "posts/addNewPost",
   async (
-    post: { id: number; name: string | null; description: string | null },
+    post: { id: number; name: string ; description: string, author: string},
     { dispatch }
   ) => {
     const data = await addPost(post);
@@ -54,6 +56,7 @@ export const loginTC = createAsyncThunk(
     const res = await login(user.email, user.password);
     if(res !== undefined) {
       dispatch(setIsAuth(true));
+      dispatch(setUserId(res.id))
     }
     return res;
   }
@@ -62,6 +65,7 @@ export const loginTC = createAsyncThunk(
 const initialState: IInitialState = {
   posts: [],
   isAuth: false,
+  userId: ''
 };
 
 const postSlice = createSlice({
@@ -72,6 +76,9 @@ const postSlice = createSlice({
       state.posts = state.posts.filter((p) => p.id !== action.payload);
     },
     setIsAuth(state, action) {
+      state.isAuth = action.payload;
+    },
+    setUserId(state, action) {
       state.isAuth = action.payload;
     },
   },
@@ -89,6 +96,6 @@ const postSlice = createSlice({
   },
 });
 
-export const { removePostAC, setIsAuth } = postSlice.actions;
+export const { removePostAC, setIsAuth, setUserId } = postSlice.actions;
 
 export default postSlice;

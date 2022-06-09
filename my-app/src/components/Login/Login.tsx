@@ -8,7 +8,7 @@ const Login = () => {
   const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const isAuth = useAppSelector(state => state.posts.isAuth)
+  const isAuth = useAppSelector((state) => state.posts.isAuth);
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -17,7 +17,7 @@ const Login = () => {
       password,
     };
     dispatch(loginTC(user));
-    if(isAuth) {
+    if (isAuth) {
       navigate("/");
     }
   };
@@ -29,13 +29,14 @@ const Login = () => {
         <s.Input value={email} onChange={(e) => setEmail(e.target.value)} />
         <s.Label htmlFor="password">Password</s.Label>
         <s.Input
+          type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <s.Button onClick={handleSubmit}>Sign In</s.Button>
       </s.Form>
       <s.Paragraph>
-        Dont have an account?{" "}
+        Dont have an account?
         <s.NavlinkBtn to="/register">Sign Up</s.NavlinkBtn>
       </s.Paragraph>
     </s.Register>

@@ -1,37 +1,33 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Component, ComponentElement, Dispatch, SetStateAction, useState } from "react";
 import { editPostTC } from "../features/PostSlice";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import "./ModalFrom.scss";
+import "./EditForm.scss";
 
-interface ModalFormProps {
-  setEditing: (id: string) => void;
-  id: string;
-  name: string;
-  desc: string
+interface EditFormProps {
+post: object | null
+onSubmitSuccess() : void
 }
 
-const ModalFrom: React.FC<ModalFormProps> = ({
-  setEditing,
-  id,
-  name,
-  desc
+const EditForm: React.FC<EditFormProps> = ({
+post,
+onSubmitSuccess
 }) => {
-  const [user, setUser] = useState(name);
-  const [description, setDescription] = useState(desc);
+  const [user, setUser] = useState("name");
+  const [description, setDescription] = useState("desc");
   const dispatch = useAppDispatch();
 
   const handleEditSubmit = (id: string) => {
-    const post = {
-      id,
-      name: user,
-      description,
-    };
-    dispatch(editPostTC(post));
-    setEditing("");
+  //   const post = {
+  //     id,
+  //     name: user,
+  //     description,
+  //   };
+  //     dispatch(editPostTC(post));    
+  //   setEditing("");
   };
 
   return (
-    <div className="ModalForm">
+    <div className="editForm">
       <form className="form">
         <label htmlFor="username">Username:</label>
         <input
@@ -48,12 +44,13 @@ const ModalFrom: React.FC<ModalFormProps> = ({
         />
         <br />
         <div className="buttons">
-          <button onClick={() => handleEditSubmit(id)}>Submit</button>
-          <button onClick={() => setEditing('')}>Cancel</button>
+          <button onClick={() => handleEditSubmit('f')}>Submit</button>
+          <button>Cancel</button>
         </div>
       </form>
+      
     </div>
   );
 };
 
-export default ModalFrom;
+export default EditForm;

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
-import PostCard2 from '../components/PostCard/PostCard2'
+import ModalForm from '../common/EditForm'
+import PostCard from '../components/PostCard/PostCard'
 import { fetchPostsTC } from '../features/PostSlice'
 import { useAppDispatch, useAppSelector } from '../hooks'
 import './HomePage.scss'
@@ -18,7 +19,7 @@ const HomePage = () => {
 
   return (
     <div className='HomePage'>
-      {posts.map(p => <PostCard2 key={p.id} name={p.name} description={p.description} image={p.image}/>)}
+      {posts.map(p => <PostCard post={p}/>)}
     </div>
   )
 }

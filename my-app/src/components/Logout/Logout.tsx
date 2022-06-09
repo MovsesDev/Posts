@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import ModalFrom from "../../common/ModalFrom";
+import ModalFrom from "../../common/EditForm";
 import { setIsAuth } from "../../features/PostSlice";
 import { useAppDispatch } from "../../hooks";
 import './Logout.scss'

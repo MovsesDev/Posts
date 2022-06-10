@@ -39,9 +39,9 @@ export const deletePost = async (id: string) => {
 };
 
 export const editPost = async (post: {
-  id: string;
-  name: string;
-  description: string;
+  id: string |undefined;
+  name: string | null;
+  description: string | null;
 }) => {
   try {
     const res = await instance.put(`goods/` + post.id, {

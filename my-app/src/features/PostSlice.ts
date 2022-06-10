@@ -41,7 +41,7 @@ export const addNewPostTC = createAsyncThunk(
 export const editPostTC = createAsyncThunk(
   "posts/editPostTC",
   async (
-    post: { id: string; name: string; description: string },
+    post: { id: string | undefined; name: string | null; description: string | null },
     { dispatch }
   ) => {
     const data = await editPost(post);

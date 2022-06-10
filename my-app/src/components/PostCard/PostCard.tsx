@@ -2,18 +2,19 @@ import React from "react";
 import { deletePostTC } from "../../features/PostSlice";
 import { useAppDispatch } from "../../hooks";
 import "./PostCard.scss";
+
 export type Post =  {
   name: string;
   description: string;
   image: string;
   id: string;
+  author: string;
 };
 
 interface PostCardProps {
   post: Post;
   userId?: string;
   setCurrentPost?: (post: Post) => void | undefined;
-  setEditing?: (id: string) => void | undefined;
   setShowPopUp?: (bool: boolean) => void | undefined;
 }
 

@@ -1,17 +1,20 @@
-import React, { ComponentState } from 'react'
+import React, { ComponentState, Dispatch, SetStateAction } from 'react'
+import { Post } from '../components/PostCard/PostCard';
 import * as s from './ModalWrap'
 
 
 interface ModalProps {
-    isVisible: object | null,
-    onCancelPress() : void,
+    isVisible: Post | null,
+    onCancelPress: Dispatch<SetStateAction<Post | null>>,
     children: ComponentState
 }
 
-const Modal: React.FC<ModalProps> = ({isVisible, onCancelPress}) => {
-  return (
-    <s.ModalWrap isVisible={null}>
 
+const Modal: React.FC<ModalProps> = ({isVisible, onCancelPress, children}) => {
+  return (
+    <s.ModalWrap isVisible={isVisible}>
+      <s.closeBtn onClick={() => onCancelPress(null)}>X</s.closeBtn>
+      {children}
     </s.ModalWrap>
   )
 }

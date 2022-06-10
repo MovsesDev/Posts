@@ -4,9 +4,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 500px;
-    width: 200px;
-
+    max-width: 200px;
+    transition: all 0.5s;
+    position: relative;
     input {
       border: 5px solid red;
       height: 30px;

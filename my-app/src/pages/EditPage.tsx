@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
 import EditForm from "../common/EditForm";
-import ModalForm from "../common/EditForm";
 import Modal from "../common/Modal";
-import PostCard from "../components/PostCard/PostCard";
-import { deletePostTC, fetchPostsTC } from "../features/PostSlice";
+import PostCard, { Post } from "../components/PostCard/PostCard";
+import { fetchPostsTC } from "../features/PostSlice";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import "./EditPage.scss";
 
 const EditPage = () => {
   const dispatch = useAppDispatch();
   const posts = useAppSelector((state) => state.posts.posts);
-  const [currentPost, setCurrentPost] = useState<object | null>(null);
+  const [currentPost, setCurrentPost] = useState<Post | null>(null);
   const [showPopUp, setShowPopUp] = useState(false);
 
   useEffect(() => {
@@ -30,10 +29,11 @@ const EditPage = () => {
           />
         </section>
       ))}
-      <Modal isVisible={currentPost} onCancelPress={() => setCurrentPost(null)} >
+
+      <Modal isVisible={currentPost} onCancelPress={setCurrentPost}>
         <EditForm
-          post = {currentPost}
-          onSubmitSuccess ={() => setCurrentPost(null)}
+          post={currentPost}
+          onSubmitSuccess={setCurrentPost}
         />
       </Modal>
     </div>

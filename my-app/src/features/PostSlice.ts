@@ -32,9 +32,11 @@ export const addNewPostTC = createAsyncThunk(
     post: { id: number; name: string ; description: string, author: string},
     { dispatch }
   ) => {
-    const data = await addPost(post);
+    const res = await addPost(post);
     dispatch(fetchPostsTC());
-    return data;
+    console.log(res?.data);
+    
+    return res?.data;
   }
 );
 
@@ -79,7 +81,7 @@ const postSlice = createSlice({
       state.isAuth = action.payload;
     },
     setUserId(state, action) {
-      state.isAuth = action.payload;
+      state.userId = action.payload;
     },
   },
   extraReducers: (builder) => {

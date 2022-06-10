@@ -14,9 +14,9 @@ interface EditFormProps {
 }
 
 const EditForm: React.FC<EditFormProps> = ({ post, onSubmitSuccess }) => {
-  const [user, setUser] = useState<string | null>(post && post.name);
-  const [description, setDescription] = useState<string | null>(post && post.description);
-
+  const [user, setUser] = useState<string>(post?.name || '');
+  const [description, setDescription] = useState<string>(post?.description || '');
+  console.log(post);
   const dispatch = useAppDispatch();
 
   const handleEditSubmit = (id: string | undefined) => {
@@ -27,6 +27,8 @@ const EditForm: React.FC<EditFormProps> = ({ post, onSubmitSuccess }) => {
     };
     dispatch(editPostTC(editedPost));
     onSubmitSuccess(null);
+    
+    
   };
 
   return (
@@ -35,20 +37,20 @@ const EditForm: React.FC<EditFormProps> = ({ post, onSubmitSuccess }) => {
         <label htmlFor="username">Username:</label>
         <input
           type="text"
-          value={post?.name}
+          value={user}
           onChange={(e) => setUser(e.target.value)}
         />
         <br />
         <label htmlFor="description">Description:</label>
         <input
           type="text"
-          value={post?.description}
+          value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
         <br />
         <div className="buttons">
           <button onClick={() => handleEditSubmit(post?.id)}>Submit</button>
-          <button>Cancel</button>
+          <button onClick={() => onSubmitSuccess(null)}>Cancel</button>
         </div>
       </form>
     </div>

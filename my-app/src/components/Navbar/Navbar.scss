@@ -1,13 +1,48 @@
 .navbar {
+    position: fixed;
+    left: 0;
+    right: 0;
     display: flex;
-    justify-content: space-between;
-    background-color: aqua;
+    justify-content: right;
+    background-color: #bde0fe;
     height: 50px;
     align-items: center;
+z-index: 1;
     a {
+        margin: 5px;
         text-decoration: none;
-        color: blue;
+        color: #ee609db5;
         font-size: 20px;
-        padding: 25px;
+        padding: 2px;
+
+        &:hover {
+            color: #fb5607;
+            transition: all 0.2s;
+        }
     }
+
+    nav {
+        margin-left: 10px;
+        border-left: 1px solid gray;
+
+        a {
+            margin: 0;
+            margin-left: 10px;
+            margin-right: 10px;
+            padding: 1px;
+            color: white;
+
+            &:hover {
+                text-align: center;
+                color: white;
+                padding: 5px;
+                background-color: blue;
+                border-radius: 3px;
+                transition: all 0.3s;
+            }
+        }
+    }
+
+    ;
+
 }

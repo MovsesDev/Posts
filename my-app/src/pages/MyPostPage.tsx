@@ -12,6 +12,7 @@ const MyPostPage: React.FC = () => {
   const isAuth = useAppSelector((state) => state.posts.isAuth);
   const posts = useAppSelector((state) => state.posts.posts);
   const userId = useAppSelector((state) => state.posts.userId);
+  
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const post = {
@@ -31,7 +32,7 @@ const MyPostPage: React.FC = () => {
         isAuth && p.author === userId ? (
           <PostCard post={p}/>
         ) : (
-          <div>No posts</div>
+          ''
         )
       )}
       <form className="form">

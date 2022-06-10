@@ -18,12 +18,12 @@ export const addPost = async (post: {
   id: number;
   name: string;
   description: string;
-  author: string
+  author: string;
 }) => {
   try {
     const res = await instance.post("goods/", post);
     getPosts();
-        return res;
+    return res;
   } catch (e) {
     console.log(e);
   }
@@ -31,7 +31,7 @@ export const addPost = async (post: {
 
 export const deletePost = async (id: string) => {
   try {
-    const res = await instance.delete('goods/' + id);
+    const res = await instance.delete("goods/" + id);
     return res.data;
   } catch (e) {
     console.log(e);
@@ -39,7 +39,7 @@ export const deletePost = async (id: string) => {
 };
 
 export const editPost = async (post: {
-  id: string |undefined;
+  id: string | undefined;
   name: string | null;
   description: string | null;
 }) => {
@@ -68,11 +68,7 @@ export const signup = async (email: string, password: string) => {
 
 export const login = async (email: string, password: string) => {
   try {
-    const res = await loginUser (
-      instance,
-      email,
-      password,
-    )        
+    const res = await loginUser(instance, email, password);
     return res;
   } catch (e) {
     console.log(e);

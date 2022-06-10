@@ -7,11 +7,12 @@
     max-width: 200px;
     transition: all 0.5s;
     position: relative;
+
     input {
-      border: 5px solid red;
+      border: 2px solid red;
       height: 30px;
-      width: 300px;
-      padding: 3px;
+      width: 100%;
+      padding: 10px;
     }
 
     label {
@@ -20,15 +21,20 @@
     }
 
     button {
-      padding: 10px;
+      padding: 1px;
       font-size: 20px;
-      margin: 5px;
+      background: none;
+      margin: 15px;
+      border: 0;
+      color: white;
+      border-radius: 4px;
+      
     }
-    
+
     .buttons button:first-child:hover {
       background-color: green;
     }
-  
+
     .buttons button:last-child:hover {
       background-color: red;
     }

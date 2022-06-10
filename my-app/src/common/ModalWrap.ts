@@ -8,8 +8,8 @@ interface ModalWrapProps {
 export const ModalWrap = styled.div<ModalWrapProps>`
   ${(props) =>
     props.isVisible !== null
-      ? `height: 100vh;
-    width: 100vw;
+      ? `height: 100%;
+    width: 100%;
     background-color: rgba(0,0,0,0.4);
     position: fixed;
     top: 0;
@@ -17,20 +17,25 @@ export const ModalWrap = styled.div<ModalWrapProps>`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    transition: all 2s;
+    transition: all 1s;
     align-items: center;`
-      : `display:none;
-      transition: all 2s;
+      : `left: -100%;
+      transition: all 0.2s;
 `}
 `;
 
-export const closeBtn = styled.button`
-position: absolute;
-top: 0;
-right: 0;
-  padding: 0;
-  border: 0;
-  cursor: pointer;
-  background: none;
-  font-size: 35px;
+export const closeBtn = styled.button<ModalWrapProps>`
+${props => props.isVisible !== null ?
+  `position: absolute;
+  top: 0;
+  right: 0;
+    padding: 0;
+    border: 0;
+    cursor: pointer;
+    background: none;
+    font-size: 35px;
+  ` : ``
+}
 `;
+
+

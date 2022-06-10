@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { loginTC } from "../../features/PostSlice";
+import { loginTC, setUserId } from "../../features/PostSlice";
 import * as s from "../Register/RegisterStyled";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
+
 const Login = () => {
+
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();

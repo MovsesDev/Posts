@@ -3,7 +3,7 @@ import { deletePostTC } from "../../features/PostSlice";
 import { useAppDispatch } from "../../hooks";
 import "./PostCard.scss";
 
-export type Post =  {
+export type Post = {
   name: string;
   description: string;
   image: string;
@@ -42,13 +42,15 @@ const PostCard: React.FC<PostCardProps> = ({
       <div className="image">
         <img src={post.image} />
       </div>
-      <div className="post-name">{post.name}</div>
-      <div className="post-desc">{post.description}</div>
-     {userId &&
-      <div className="buttons">
-        <button onClick={() => handleEdit(post)}>Edit</button>
-        <button onClick={() => handleDelete(post.id)}>Delete</button>
-      </div>}
+        <div className="post-name">{post.name}</div>
+        <div className="post-desc">{post.description}</div>
+      
+      {userId && (
+        <div className="buttons">
+          <button onClick={() => handleEdit(post)}>Edit</button>
+          <button onClick={() => handleDelete(post.id)}>Delete</button>
+        </div>
+      )}
     </div>
   );
 };

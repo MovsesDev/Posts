@@ -11,9 +11,9 @@ interface ModalProps {
 
 
 const Modal: React.FC<ModalProps> = ({isVisible, onCancelPress, children}) => {
-  return (
+  return !isVisible ? null : (
     <s.ModalWrap isVisible={isVisible}>
-      <s.closeBtn onClick={() => onCancelPress(null)}>X</s.closeBtn>
+      <s.closeBtn isVisible={isVisible} onClick={() => onCancelPress(null)}>X</s.closeBtn>
       {children}
     </s.ModalWrap>
   )

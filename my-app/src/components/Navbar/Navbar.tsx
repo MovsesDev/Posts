@@ -15,7 +15,10 @@ const Navbar: React.FC = () => {
       {isAuth ? (
         <NavLink to="/logout">Log out</NavLink>
       ) : (
-        <NavLink to="/register"> Sign up</NavLink>
+        <nav>
+          <NavLink to="/register"> Sign up</NavLink>
+          <NavLink to="/login"> Sign in</NavLink>
+        </nav>
       )}
     </div>
   );

@@ -11,9 +11,8 @@ const Navbar: React.FC = () => {
       <NavLink  to="/myPosts">
         My posts
       </NavLink>
-      <NavLink to="/editPost"> Edit post</NavLink>
       {isAuth ? (
-        <NavLink to="/logout">Log out</NavLink>
+        <NavLink to="/logout" className='logout-btn'>Log out</NavLink>
       ) : (
         <nav>
           <NavLink to="/register"> Sign up</NavLink>

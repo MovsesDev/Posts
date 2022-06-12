@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SetStateAction } from "react";
 import { deletePostTC } from "../../features/PostSlice";
 import { useAppDispatch } from "../../hooks";
 import "./PostCard.scss";
@@ -15,21 +15,27 @@ interface PostCardProps {
   post: Post;
   userId?: string;
   setCurrentPost?: (post: Post) => void | undefined;
-  setShowPopUp?: (bool: boolean) => void | undefined;
+  setIsPopupVisible?: React.Dispatch<SetStateAction<boolean>>;
+  setIsEditPostVisible?: React.Dispatch<SetStateAction<boolean>>;
+  setIsAddPostVisible?: React.Dispatch<SetStateAction<boolean>>;
 }
 
 const PostCard: React.FC<PostCardProps> = ({
   post,
   userId,
-  setShowPopUp,
   setCurrentPost,
+  setIsEditPostVisible,
+  setIsPopupVisible,
+  setIsAddPostVisible
 }) => {
   const dispatch = useAppDispatch();
 
   const handleEdit = (post: Post) => {
-    if (setShowPopUp && setCurrentPost) {
+    if ( setCurrentPost && setIsPopupVisible && setIsEditPostVisible && setIsAddPostVisible) {
       setCurrentPost(post);
-      setShowPopUp(true);
+      setIsPopupVisible(true)
+      setIsEditPostVisible(true)
+      setIsAddPostVisible(false)
     }
   };
 

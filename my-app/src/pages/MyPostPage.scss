@@ -1,13 +1,44 @@
-.MyPosts {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 90vh;
-    .form {
-        display: flex;
-        flex-direction: column;
-        max-width: 200px;
+.MyPostPage {
+  position: relative;
+  height: 100%;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
 
+  .post-add-btn {
+    position: absolute;
+    left: 0;
+    color: white;
+    top: 0;
+  }
+  .post-add-btn > * {
+    margin: 5px;
+    font-size: 22px;
+}
+
+.post-add-btn button{
+    border: 0;
+    text-align: center;
+    color: black;
+    cursor: pointer;
+    background-color: white;
+
+    &:hover {
+        font-size: 18px;
+        transition: all 0.1 ease;
     }
+  }
+  
+  .posts {
+    .form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+.page-title {
+  font-size: 30px;
 }

@@ -1,13 +1,12 @@
 import styled from "styled-components";
-import { Post } from "../components/PostCard/PostCard";
 
 interface ModalWrapProps {
-  isVisible: Post | null;
+  isPopupVisible: boolean;
 }
 
 export const ModalWrap = styled.div<ModalWrapProps>`
   ${(props) =>
-    props.isVisible !== null
+    props.isPopupVisible !== false
       ? `height: 100%;
     width: 100%;
     background-color: rgba(0,0,0,0.4);
@@ -25,12 +24,13 @@ export const ModalWrap = styled.div<ModalWrapProps>`
 `;
 
 export const closeBtn = styled.button<ModalWrapProps>`
-${props => props.isVisible !== null ?
+${props => props.isPopupVisible !== false ?
   `position: absolute;
-  top: 0;
-  right: 0;
+  top: 10%;
+  right: 1%;
     padding: 0;
     border: 0;
+    color: white;
     cursor: pointer;
     background: none;
     font-size: 35px;

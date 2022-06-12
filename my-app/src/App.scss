@@ -2,11 +2,13 @@
 margin: 0;
 padding: 0;
 box-sizing: border-box;
-background-color: #457b9d;
+height: 100%;
 
 .Pages {
-    padding-top: 50px;
+    padding: 3rem 1rem;
     display: flex;
+    
     justify-content: center;
+    height: 100%;
 }
 }

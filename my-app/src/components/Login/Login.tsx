@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { loginTC, setUserId } from "../../features/PostSlice";
 import * as s from "../Register/RegisterStyled";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +12,12 @@ const Login = () => {
   const dispatch = useAppDispatch();
   const isAuth = useAppSelector((state) => state.posts.isAuth);
 
+  useEffect(() => {
+    if (isAuth) {
+      navigate("/");
+    }
+  }, [isAuth])
+
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const user = {
@@ -19,14 +25,13 @@ const Login = () => {
       password,
     };
     dispatch(loginTC(user));
-    if (isAuth) {
-      navigate("/");
-    }
+   
   };
 
   return (
     <s.Register>
       <s.Form>
+        <s.Title>Sign In</s.Title>
         <s.Label htmlFor="email">Email</s.Label>
         <s.Input value={email} onChange={(e) => setEmail(e.target.value)} />
         <s.Label htmlFor="password">Password</s.Label>

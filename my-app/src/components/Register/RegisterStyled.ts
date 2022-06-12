@@ -13,37 +13,45 @@ export const Register = styled.div`
   background-color: rgba(0, 15, 16, 0.4);
 `;
 
+export const Title = styled.div`
+  margin-bottom: 35px;
+  font-size: 25px
+`
+
 export const Form = styled.form`
+background-color: white;
   display: flex;
   text-align: center;
-  color: white;
+  color: black;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 300px;
-  width: 200px;
+  max-height: 400px;
+  min-height: 300px;
+  border-radius: 5px;
+  width: 350px;
 `;
 
 export const Label = styled.label``;
 
-// export const LargeInput = styled(Input)<{ isActive?: boolean }>`
-//   background-color: ${(props) => (props.isActive ? "green" : "gray")};
-// `;
 
 export const Input = styled.input`
   height: 30px;
   width: 300px;
-  border: 2px solid yellow;
-  border-radius: 5%;
+  padding: 2px;
+  border: 2px solid;
+  border-radius: 2px;
+  background-color: none;
 `;
 
 export const Button = styled.button`
-  margin: 5px;
+  margin-top: 50px;
   display: inline-block;
   background-color: aqua;
   text-align: center;
   padding: 5px;
   border: 1px solid black;
+  border-radius: 4px;
   text-decoration: none;
   transition: 0.1s ease;
   color: black;
@@ -54,25 +62,12 @@ export const Button = styled.button`
 `;
 
 export const NavlinkBtn = styled(NavLink)`
-
+ text-decoration: none;
+ color: #fb8500;
 `
 
 export const Paragraph = styled.p`
   color: white;
-  font-size: 18px;
+  font-size: 20px;
 `;
 
-// const setInputType = (props: { variant: string }) => {
-//   switch (props.variant) {
-//     case "secondary":
-//       return css`
-//         border: 1px solid gray;
-//       `;
-//     default:
-//       return ``;
-//   }
-// };
-
-// export const ColorInput = styled.input<{ variant: string }>`
-//   ${setInputType}
-// `;

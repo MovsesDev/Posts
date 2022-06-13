@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 
 const Login = () => {
-
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
@@ -16,7 +15,7 @@ const Login = () => {
     if (isAuth) {
       navigate("/");
     }
-  }, [isAuth])
+  }, [isAuth]);
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -25,7 +24,6 @@ const Login = () => {
       password,
     };
     dispatch(loginTC(user));
-   
   };
 
   return (

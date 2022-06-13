@@ -10,7 +10,8 @@ interface IInitialState {
     author: string
   }[];
   isAuth: boolean;
-  userId: string
+  userId: string,
+  isLoading: boolean
 }
 
 export const fetchPostsTC = createAsyncThunk("posts/fetchPosts", () => {
@@ -57,7 +58,8 @@ export const loginTC = createAsyncThunk(
   async (user: { email: string; password: string }, { dispatch }) => {
     const res = await login(user.email, user.password);
     if(res !== undefined) {
-      dispatch(setIsAuth(true));
+      localStorage.setItem('user', JSON.stringify(user))
+      dispatch(setIsAuth(localStorage.length !== 0 ? true : false))
       dispatch(setUserId(res.id))
     }
     return res;
@@ -66,8 +68,9 @@ export const loginTC = createAsyncThunk(
 
 const initialState: IInitialState = {
   posts: [],
-  isAuth: false,
-  userId: ''
+  isAuth: localStorage.length !== 0 ? true : false,
+  userId: '',
+  isLoading: false
 };
 
 const postSlice = createSlice({
@@ -77,27 +80,28 @@ const postSlice = createSlice({
     removePostAC(state, action) {
       state.posts = state.posts.filter((p) => p.id !== action.payload);
     },
-    setIsAuth(state, action) {
-      state.isAuth = action.payload;
-    },
     setUserId(state, action) {
       state.userId = action.payload;
     },
+    setIsAuth(state,action) {
+      state.isAuth = action.payload
+    }
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchPostsTC.pending, (state, action) => {
-        console.log("pending");
+        state.isLoading = true
       })
       .addCase(fetchPostsTC.rejected, (state, action) => {
         console.log("rejected");
       })
       .addCase(fetchPostsTC.fulfilled, (state, action) => {
         state.posts = action.payload;
+        state.isLoading = false
       });
   },
 });
 
-export const { removePostAC, setIsAuth, setUserId } = postSlice.actions;
+export const { removePostAC, setUserId, setIsAuth } = postSlice.actions;
 
 export default postSlice;

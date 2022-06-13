@@ -6,6 +6,8 @@ import PostCard, { Post } from "../components/PostCard/PostCard";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import AddPostForm from "./AddPostForm";
 import "./MyPostPage.scss";
+import ClipLoader from "react-spinners/ClipLoader";
+import { css } from "@emotion/react";
 
 const MyPostPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -16,39 +18,66 @@ const MyPostPage: React.FC = () => {
   const isAuth = useAppSelector((state) => state.posts.isAuth);
   const posts = useAppSelector((state) => state.posts.posts);
   const userId = useAppSelector((state) => state.posts.userId);
-  const navigate = useNavigate()
+  const isLoading = useAppSelector((state) => state.posts.isLoading);
+  const navigate = useNavigate();
 
-useEffect(() => {
-  if(!isAuth) {
-    navigate('/login')
-  }
-}, [])
+  useEffect(() => {
+    if (!isAuth) {
+      navigate("/login");
+    }
+  }, []);
+
+  const override = css`
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+  `
 
   const handleAddPost = () => {
-    setIsPopupVisible(true)
-    setIsAddPostVisible(true)
-    setIsEditPostVisible(false)
-  }
+    setIsAddPostVisible(true);
+  };
   return (
-    <div className="MyPostPage">
-      <div className="post-add-btn">
-        <span>Add post</span>
-        <button onClick={handleAddPost}>+</button>
-      </div>
-      <div className="posts">
-        {posts.map((p) =>
-          isAuth && p.author === userId ? (
-            <PostCard setCurrentPost={setCurrentPost} userId={p.id} post={p} setIsPopupVisible={setIsPopupVisible} setIsAddPostVisible={setIsAddPostVisible} setIsEditPostVisible={setIsEditPostVisible}/>
-          ) : (
-            ""
-          )
-        )}
-      </div>
-      <Modal isPopupVisible={isPopupVisible} onCancelPress={setIsPopupVisible} setIsAddPostVisible={setIsAddPostVisible}>
-        <EditForm post={currentPost} onSubmitSuccess={setIsPopupVisible} isEditPostVisible={isEditPostVisible}/>
-        <AddPostForm isAddPostVisible={isAddPostVisible} setIsPopupVisible={setIsPopupVisible}/>
-      </Modal>
-    </div>
+    <React.Fragment>
+      {isLoading ? (
+        <ClipLoader color="red" css={override}/>
+      ) : (
+        <div className="MyPostPage">
+          <div className="post-add-btn">
+            <span>Add post</span>
+            <button onClick={handleAddPost}>+</button>
+          </div>
+          <div className="posts">
+            {posts.map((p) =>
+              isAuth && p.author === userId ? (
+                <PostCard
+                  setCurrentPost={setCurrentPost}
+                  userId={p.id}
+                  post={p}
+                  setIsEditPostVisible={setIsEditPostVisible}
+                />
+              ) : null
+            )}
+          </div>
+          <Modal
+            isPopupVisible={isAddPostVisible}
+            setIsPopupVisible={setIsAddPostVisible}
+          >
+            <AddPostForm onSubmitSuccess={() => setIsAddPostVisible(false)} />
+          </Modal>
+
+          <Modal
+            isPopupVisible={isEditPostVisible}
+            setIsPopupVisible={setIsEditPostVisible}
+          >
+            <EditForm
+              post={currentPost}
+              onSubmitSuccess={() => setIsEditPostVisible(false)}
+            />
+          </Modal>
+        </div>
+      )}
+    </React.Fragment>
   );
 };
 

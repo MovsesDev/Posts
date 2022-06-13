@@ -64,7 +64,7 @@ const Register = () => {
       <s.Form onSubmit={handleSubmit}>
         <s.Title> Sign Up</s.Title>
         {userDirty && userError && (
-          <div style={{ color: "red" }}>{userError}</div>
+          <p style={{ color: "red" }}>{userError}</p>
         )}
         <s.Label htmlFor="email">Email</s.Label>
         <s.Input
@@ -75,7 +75,7 @@ const Register = () => {
           onChange={(e) => userHandler(e)}
         />
         {passwordDirty && passwordError && (
-          <div style={{ color: "red" }}>{passwordError}</div>
+          <p style={{ color: "red" }}>{passwordError}</p>
         )}
         <s.Label htmlFor="password">Password</s.Label>
         <s.Input

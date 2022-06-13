@@ -19,6 +19,7 @@ export const Title = styled.div`
 `
 
 export const Form = styled.form`
+position: relative;
 background-color: white;
   display: flex;
   text-align: center;
@@ -45,7 +46,8 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
-  margin-top: 50px;
+position: absolute;
+bottom: 1rem;
   display: inline-block;
   background-color: aqua;
   text-align: center;
@@ -55,8 +57,8 @@ export const Button = styled.button`
   text-decoration: none;
   transition: 0.1s ease;
   color: black;
+  cursor: pointer;
   &:hover {
-    font-size: 14px;
     padding: 7px;
   }
 `;

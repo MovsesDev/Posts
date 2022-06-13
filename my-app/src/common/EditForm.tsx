@@ -6,11 +6,10 @@ import "./EditForm.scss";
 
 interface EditFormProps {
   post: Post | null;
-  onSubmitSuccess: Dispatch<SetStateAction<boolean>>;
-  isEditPostVisible: boolean
+  onSubmitSuccess: () => void;
 }
 
-const EditForm: React.FC<EditFormProps> = ({ post, onSubmitSuccess, isEditPostVisible }) => {
+const EditForm: React.FC<EditFormProps> = ({ post, onSubmitSuccess }) => {
   const [user, setUser] = useState<string>(post?.name || "");
   const [description, setDescription] = useState<string>(
     post?.description || ""
@@ -25,11 +24,15 @@ const EditForm: React.FC<EditFormProps> = ({ post, onSubmitSuccess, isEditPostVi
       description,
     };
     dispatch(editPostTC(editedPost));
-    onSubmitSuccess(false);
+    onSubmitSuccess();
   };
 
+  const onCancel = () => {
+    onSubmitSuccess()
+  }
+
   return (
-    isEditPostVisible ? (<div className="editForm">
+    <div className="editForm">
     <form className="form">
       <label htmlFor="username">Username:</label>
       <input
@@ -47,10 +50,10 @@ const EditForm: React.FC<EditFormProps> = ({ post, onSubmitSuccess, isEditPostVi
       <br />
       <div className="buttons">
         <button onClick={() => handleEditSubmit(post?.id)}>Submit</button>
-        <button onClick={() => onSubmitSuccess(false)}>Cancel</button>
+        <button onClick={onCancel}>Cancel</button>
       </div>
     </form>
-  </div>) : (<div> </div>)
+  </div>
     
   );
 };

@@ -1,21 +1,19 @@
-import React, { ComponentState, Dispatch, SetStateAction } from 'react'
+import React, { ComponentState, SetStateAction } from 'react'
 import * as s from './ModalWrap'
 
 
 interface ModalProps {
-  onCancelPress: Dispatch<SetStateAction<boolean>>,
   children: ComponentState
   isPopupVisible: boolean,
-  setIsAddPostVisible: React.Dispatch<SetStateAction<boolean>>,
+  setIsPopupVisible: React.Dispatch<SetStateAction<boolean>>,
 }
 
 
 
-const Modal: React.FC<ModalProps> = ({isPopupVisible, onCancelPress, children, setIsAddPostVisible}) => {
+const Modal: React.FC<ModalProps> = ({isPopupVisible, children, setIsPopupVisible}) => {
 
 const handleClose = () => {
-  setIsAddPostVisible(false)
-  onCancelPress(false)
+  setIsPopupVisible(false)
 }
 
   return isPopupVisible === true ?  (
@@ -23,7 +21,7 @@ const handleClose = () => {
       <s.closeBtn isPopupVisible={isPopupVisible} onClick={handleClose}>X</s.closeBtn>
       {children}
     </s.ModalWrap>
-  )  : (<div> </div>)
+  )  : null
 }
 
 export default Modal

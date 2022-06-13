@@ -15,9 +15,7 @@ interface PostCardProps {
   post: Post;
   userId?: string;
   setCurrentPost?: (post: Post) => void | undefined;
-  setIsPopupVisible?: React.Dispatch<SetStateAction<boolean>>;
   setIsEditPostVisible?: React.Dispatch<SetStateAction<boolean>>;
-  setIsAddPostVisible?: React.Dispatch<SetStateAction<boolean>>;
 }
 
 const PostCard: React.FC<PostCardProps> = ({
@@ -25,17 +23,13 @@ const PostCard: React.FC<PostCardProps> = ({
   userId,
   setCurrentPost,
   setIsEditPostVisible,
-  setIsPopupVisible,
-  setIsAddPostVisible
 }) => {
   const dispatch = useAppDispatch();
 
   const handleEdit = (post: Post) => {
-    if ( setCurrentPost && setIsPopupVisible && setIsEditPostVisible && setIsAddPostVisible) {
+    if ( setCurrentPost && setIsEditPostVisible) {
       setCurrentPost(post);
-      setIsPopupVisible(true)
       setIsEditPostVisible(true)
-      setIsAddPostVisible(false)
     }
   };
 

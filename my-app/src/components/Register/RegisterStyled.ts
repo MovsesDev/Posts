@@ -14,52 +14,58 @@ export const Register = styled.div`
 `;
 
 export const Title = styled.div`
-  margin-bottom: 35px;
-  font-size: 25px
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
 `
 
 export const Form = styled.form`
 position: relative;
 background-color: white;
   display: flex;
-  text-align: center;
   color: black;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-height: 400px;
-  min-height: 300px;
+  min-height: 340px;
   border-radius: 5px;
-  width: 350px;
+  min-width: 320px;
 `;
 
-export const Label = styled.label``;
+export const Label = styled.label`
+`;
 
 
 export const Input = styled.input`
-  height: 30px;
-  width: 300px;
+  height: 1.8rem;
+  width: 18rem;
   padding: 2px;
   border: 2px solid;
   border-radius: 2px;
   background-color: none;
+
+  &:hover {
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  border: 1px solid rgba(81, 203, 238, 1);
+  transition: 0.1s ease;
+  }
 `;
 
 export const Button = styled.button`
 position: absolute;
 bottom: 1rem;
   display: inline-block;
-  background-color: aqua;
+  background-color: #3a86ff;
   text-align: center;
-  padding: 5px;
+  width: 70%;
+  height: 10%;
   border: 1px solid black;
-  border-radius: 4px;
+  border-radius: 3px;
   text-decoration: none;
   transition: 0.1s ease;
   color: black;
   cursor: pointer;
   &:hover {
-    padding: 7px;
+    background-color: #1363DF;
   }
 `;
 
@@ -73,3 +79,8 @@ export const Paragraph = styled.p`
   font-size: 20px;
 `;
 
+export const [Email, Password] = Array(2).fill( styled.div`
+display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+`)

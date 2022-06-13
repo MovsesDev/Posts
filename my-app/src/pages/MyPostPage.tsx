@@ -44,8 +44,8 @@ const MyPostPage: React.FC = () => {
       ) : (
         <div className="MyPostPage">
           <div className="post-add-btn">
-            <span>Add post</span>
-            <button onClick={handleAddPost}>+</button>
+            <span onClick={handleAddPost}>Add post <button>+</button></span>
+            
           </div>
           <div className="posts">
             {posts.map((p) =>

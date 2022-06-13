@@ -56,35 +56,42 @@ const Register = () => {
       setPasswordError("Incorrect password");
     } else {
       setPasswordError("");
-    } 
+    }
   };
 
   return (
     <s.Register>
       <s.Form onSubmit={handleSubmit}>
         <s.Title> Sign Up</s.Title>
+
+        <s.Email>
         {userDirty && userError && (
           <p style={{ color: "red" }}>{userError}</p>
         )}
-        <s.Label htmlFor="email">Email</s.Label>
-        <s.Input
-          onBlur={(e) => onBlurHandler(e)}
-          name="email"
-          type='text'
-          value={email}
-          onChange={(e) => userHandler(e)}
-        />
-        {passwordDirty && passwordError && (
-          <p style={{ color: "red" }}>{passwordError}</p>
-        )}
-        <s.Label htmlFor="password">Password</s.Label>
-        <s.Input
-          onBlur={(e) => onBlurHandler(e)}
-          type='password'
-          name="password"
-          value={password}
-          onChange={(e) => passwordHandler(e)}
-        />
+          <s.Label htmlFor="email">Email</s.Label>
+          <s.Input
+            placeholder="Email"
+            onBlur={(e) => onBlurHandler(e)}
+            name="email"
+            type='text'
+            value={email}
+            onChange={(e) => userHandler(e)}
+          />
+        </s.Email>
+        <s.Password>
+          {passwordDirty && passwordError && (
+            <p style={{ color: "red" }}>{passwordError}</p>
+          )}
+          <s.Label htmlFor="password">Password</s.Label>
+          <s.Input
+            placeholder="Password"
+            onBlur={(e) => onBlurHandler(e)}
+            type='password'
+            name="password"
+            value={password}
+            onChange={(e) => passwordHandler(e)}
+          />
+        </s.Password>
         <s.Button disabled={!validForm} onSubmit={handleSubmit}>
           Sign up
         </s.Button>

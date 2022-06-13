@@ -30,14 +30,21 @@ const Login = () => {
     <s.Register>
       <s.Form>
         <s.Title>Sign In</s.Title>
-        <s.Label htmlFor="email">Email</s.Label>
-        <s.Input value={email} onChange={(e) => setEmail(e.target.value)} />
-        <s.Label htmlFor="password">Password</s.Label>
-        <s.Input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <s.Email>
+
+          <s.Label htmlFor="email">Email</s.Label>
+          <s.Input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
+        </s.Email>
+        <s.Password>
+
+          <s.Label htmlFor="password">Password</s.Label>
+          <s.Input
+            placeholder="Password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </s.Password>
         <s.Button onClick={handleSubmit}>Sign In</s.Button>
       </s.Form>
       <s.Paragraph>

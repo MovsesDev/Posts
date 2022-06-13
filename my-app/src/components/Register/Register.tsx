@@ -5,8 +5,8 @@ import * as s from "./RegisterStyled";
 const Register = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [userError, setUserError] = useState("Incorrect user");
-  const [passwordError, setPasswordError] = useState("Incorrect password");
+  const [userError, setUserError] = useState<string | null>("Email cannot be empty");
+  const [passwordError, setPasswordError] = useState<string | null>('Password cannot be empty');
   const [passwordDirty, setPasswordDirty] = useState<boolean>(false);
   const [userDirty, setUserDirty] = useState<boolean>(false);
   const [validForm, setValidForm] = useState<boolean>(false);
@@ -42,7 +42,7 @@ const Register = () => {
     const regex =
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!regex.test(String(e.target.value).toLowerCase())) {
-      setUserError("Incorrect username");
+      setUserError(email + " is not a valid email address.");
     } else {
       setUserError("");
     }
@@ -53,7 +53,7 @@ const Register = () => {
     const regex =
       /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
     if (!regex.test(e.target.value)) {
-      setPasswordError("Incorrect password");
+      setPasswordError("Passwords must contain at least eight characters, including at least 1 letter and 1 number.");
     } else {
       setPasswordError("");
     }
@@ -65,9 +65,6 @@ const Register = () => {
         <s.Title> Sign Up</s.Title>
 
         <s.Email>
-        {userDirty && userError && (
-          <p style={{ color: "red" }}>{userError}</p>
-        )}
           <s.Label htmlFor="email">Email</s.Label>
           <s.Input
             placeholder="Email"
@@ -76,12 +73,12 @@ const Register = () => {
             type='text'
             value={email}
             onChange={(e) => userHandler(e)}
-          />
+          />  
+          {userDirty && userError && (
+            <p style={{ color: "red",  fontSize: '12px'}}>{userError}</p>
+          )}
         </s.Email>
         <s.Password>
-          {passwordDirty && passwordError && (
-            <p style={{ color: "red" }}>{passwordError}</p>
-          )}
           <s.Label htmlFor="password">Password</s.Label>
           <s.Input
             placeholder="Password"
@@ -91,6 +88,9 @@ const Register = () => {
             value={password}
             onChange={(e) => passwordHandler(e)}
           />
+          {passwordDirty && passwordError && (
+            <p style={{ color: "red",  fontSize: '12px'}}>{passwordError}</p>
+          )}
         </s.Password>
         <s.Button disabled={!validForm} onSubmit={handleSubmit}>
           Sign up

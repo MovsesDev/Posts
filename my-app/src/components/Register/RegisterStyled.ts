@@ -14,7 +14,7 @@ export const Register = styled.div`
 `;
 
 export const Title = styled.div`
-  margin-bottom: 2rem;
+  padding-bottom: 2rem;
   font-size: 1.5rem;
 `
 
@@ -22,13 +22,16 @@ export const Form = styled.form`
 position: relative;
 background-color: white;
   display: flex;
-  color: black;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 340px;
+  color: black;
+  min-height: 300px;
+  height: 10rem;
   border-radius: 5px;
-  min-width: 320px;
+  width: 300px;
+  max-width: 450px;
+  overflow: hidden;
 `;
 
 export const Label = styled.label`
@@ -37,15 +40,14 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   height: 1.8rem;
-  width: 18rem;
+  max-width: 150px;
   padding: 2px;
-  border: 2px solid;
+  border: 1px solid;
   border-radius: 2px;
   background-color: none;
-
-  &:hover {
-    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-  border: 1px solid rgba(81, 203, 238, 1);
+  &:focus  {
+    box-shadow: 0 0 9px blue;
+  border: 1px outset blue;
   transition: 0.1s ease;
   }
 `;
@@ -76,11 +78,12 @@ export const NavlinkBtn = styled(NavLink)`
 
 export const Paragraph = styled.p`
   color: white;
-  font-size: 20px;
+  font-size: 1rem;
 `;
 
-export const [Email, Password] = Array(2).fill( styled.div`
+export const [Email, Password] = Array(2).fill(styled.div`
 display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
+  max-width: 150px;
 `)

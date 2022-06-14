@@ -14,7 +14,7 @@ export const Register = styled.div`
 `;
 
 export const Title = styled.div`
-  padding-bottom: 2rem;
+  margin-bottom: 2rem;
   font-size: 1.5rem;
 `
 
@@ -27,9 +27,9 @@ background-color: white;
   align-items: center;
   color: black;
   min-height: 300px;
-  height: 10rem;
+  height: 400px;
   border-radius: 5px;
-  width: 300px;
+  width: 400px;
   max-width: 450px;
   overflow: hidden;
 `;
@@ -40,7 +40,7 @@ export const Label = styled.label`
 
 export const Input = styled.input`
   height: 1.8rem;
-  max-width: 150px;
+  width: 100%;
   padding: 2px;
   border: 1px solid;
   border-radius: 2px;
@@ -85,5 +85,5 @@ export const [Email, Password] = Array(2).fill(styled.div`
 display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
-  max-width: 150px;
+  width: 80%;
 `)

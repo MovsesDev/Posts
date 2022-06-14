@@ -6,8 +6,8 @@ import PostCard, { Post } from "../components/PostCard/PostCard";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import AddPostForm from "./AddPostForm";
 import "./MyPostPage.scss";
-import ClipLoader from "react-spinners/ClipLoader";
-import { css } from "@emotion/react";
+import Preloader from "../hoc/Preloader";
+import { fetchPostsTC } from "../features/PostSlice";
 
 const MyPostPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -27,12 +27,10 @@ const MyPostPage: React.FC = () => {
     }
   }, []);
 
-  const override = css`
-    position: absolute;
-    top: 50%;
-    right: 50%;
-    transform: translate(-50%, -50%);
-  `
+  useEffect(() => {
+    dispatch(fetchPostsTC());
+  }, []);
+
 
   const handleAddPost = () => {
     setIsAddPostVisible(true);
@@ -40,7 +38,7 @@ const MyPostPage: React.FC = () => {
   return (
     <React.Fragment>
       {isLoading ? (
-        <ClipLoader color="red" css={override}/>
+        <Preloader />
       ) : (
         <div className="MyPostPage">
           <div className="post-add-btn">

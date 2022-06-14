@@ -5,7 +5,9 @@ box-sizing: border-box;
 height: 100vh;
 
 .Pages {
-    padding: 3rem 1rem;
+    padding: 2rem;
+    max-width: 75%;
+    margin: 0 auto;
     display: flex;
     justify-content: center;
 }

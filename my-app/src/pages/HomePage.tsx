@@ -6,17 +6,12 @@ import { useAppDispatch, useAppSelector } from "../hooks";
 import "./HomePage.scss";
 import ClipLoader from "react-spinners/ClipLoader";
 import { css } from "@emotion/react";
+import Preloader from "../hoc/Preloader";
 const HomePage = () => {
   const dispatch = useAppDispatch();
   const posts = useAppSelector((state) => state.posts.posts);
   const isLoading = useAppSelector((state) => state.posts.isLoading);
 
-  const override = css`
-    position: absolute;
-    top: 50%;
-    right: 50%;
-    transform: translate(-50%, -50%);
-  `;
 
   useEffect(() => {
     dispatch(fetchPostsTC());
@@ -25,7 +20,7 @@ const HomePage = () => {
   return (
     <div className="HomePage">
       {isLoading ? (
-        <ClipLoader color="red" css={override}/>
+        <Preloader/>
       ) : (
         posts.map((p) => <PostCard post={p} />)
       )}

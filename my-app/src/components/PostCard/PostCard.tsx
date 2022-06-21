@@ -43,7 +43,7 @@ const PostCard: React.FC<PostCardProps> = ({
         <img src={post.image} />
       </div>
         <div className="post-name">{post.name}</div>
-        <div className="post-desc">{post.description}</div>
+        <div className="post-desc">{post.description.substring(0, 45) + `...`}</div>
       
       {userId && (
         <div className="buttons">

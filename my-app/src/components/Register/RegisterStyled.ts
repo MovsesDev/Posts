@@ -41,14 +41,14 @@ export const Label = styled.label`
 export const Input = styled.input`
   height: 1.8rem;
   width: 100%;
-  padding: 2px;
+  padding: 5px;
   border: 1px solid;
   border-radius: 2px;
-  background-color: none;
+  border: 0;
+  background: none;
+  border-bottom: 1px solid gray;
   &:focus  {
-    box-shadow: 0 0 9px blue;
-  border: 1px outset blue;
-  transition: 0.1s ease;
+    border: 0;
   }
 `;
 

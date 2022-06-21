@@ -10,7 +10,7 @@ import Logout from "./components/Logout/Logout";
 
 const App: React.FC = () => {
   return (
-    <div className="App">
+    <div className="App" >
       <BrowserRouter>
         <Navbar />
         <div className="Pages">

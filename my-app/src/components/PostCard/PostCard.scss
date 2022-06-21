@@ -1,52 +1,50 @@
 .PostCard {
-  position: relative;
   display: flex;
-  justify-content: space-between;
-  width: 75%;
-  max-width: 900px;
-  height: 10rem;
-  border: 1px solid #a8dadc;
-  border-radius: 2px;
-  margin: 1rem;
+  flex-direction: column;
+  height: 420px;
   align-items: center;
-  font-size: 1.5rem;
-  overflow: hidden; 
-  transition: all 0.2s;
+  border: 2px solid rgb(149, 137, 137);
+  border-radius: 20px;
+  background-color: rgb(167, 128, 128);
+  overflow: hidden;
+  margin: 0 55px;
+  padding: 10px 50px;
+  object-fit: contain;
+  width: 100%;
+  user-select: none;
+  overflow-x: visible;
 
   .post-name {
-    position: absolute;
-    top: 15%;
-    left: 25%;
-    color: white;
+    margin-top: 25px;
+    color: rgb(232, 232, 232);
   }
+
   .post-desc {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin-top: 25px;
     color: #fca311;
   }
 
-  img {
-    width: 10rem;
-    height: 10rem;
-    border-radius: 5rem;
-  }
+  .image {
 
-  .buttons {
-    display: flex;
-    position: absolute;
-    top: 10px;
-    right: 5px;
-
-    button {
-      color: white;
-      background: none;
-      border: 0;
-      margin: 5px;
+    img {
+      width: 10rem;
+      height: 10rem;
+      border-radius: 5rem;
     }
   }
 
+  .buttons {
+    margin-top: 25px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    button {
+      margin: 0 15px;
+      border: 0;
+      background: none;
+      font-size: 18px;
+    }
+  }
   .buttons button:first-child:hover {
     color: green;
   }

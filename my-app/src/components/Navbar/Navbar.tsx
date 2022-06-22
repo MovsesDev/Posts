@@ -1,25 +1,31 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import { useAppSelector } from "../../hooks";
-import "./Navbar.scss";
+import { LogoutBtn, Nav, NavBtn, Wrapper, Menu, Content } from "./NavbarStyled";
+import "./NavbarStyled.ts";
+
+
+
+
 
 const Navbar: React.FC = () => {
   const isAuth = useAppSelector((state) => state.posts.isAuth);
   return (
-    <div className="navbar">
-      <NavLink to="/"> Main</NavLink>
-      <NavLink  to="/myPosts">
-        My posts
-      </NavLink>
+    <Wrapper>
+      <Content>
+
+      <Menu>
+
+      <NavBtn to='/'>Main</NavBtn>
+      <NavBtn to='/myPosts'>My Posts</NavBtn> 
+      </Menu>
       {isAuth ? (
-        <NavLink to="/logout" className='logout-btn'>Log out</NavLink>
-      ) : (
-        <nav>
-          <NavLink to="/register"> Sign up</NavLink>
-          <NavLink to="/login"> Sign in</NavLink>
-        </nav>
-      )}
-    </div>
+<LogoutBtn to='/logout'>Log Out</LogoutBtn>
+      ) : (<Nav> 
+        <NavBtn to='/register'>Sign ip</NavBtn>
+        <NavBtn to='/login'>Sign in</NavBtn>
+      </Nav>)}
+      </Content>
+    </Wrapper>
   );
 };
 

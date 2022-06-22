@@ -52,7 +52,7 @@ const PostCard: React.FC<PostCardProps> = ({
       </div>
       <div className="post-name">{truncate(post.name, 15)}</div>
       <div className="post-desc">
-        {truncate(post.description, 45)}
+        {truncate(post.description, 25)}
       </div>
 
       {userId && (

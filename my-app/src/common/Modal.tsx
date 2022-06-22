@@ -1,5 +1,5 @@
 import React, { ComponentState, SetStateAction } from 'react'
-import * as s from './ModalWrap'
+import { ModalWrap, CloseBtn, Content } from './ModalWrap'
 
 
 interface ModalProps {
@@ -17,10 +17,12 @@ const handleClose = () => {
 }
 
   return isPopupVisible === true ?  (
-    <s.ModalWrap isPopupVisible={isPopupVisible}>
-      <s.closeBtn isPopupVisible={isPopupVisible} onClick={handleClose}>X</s.closeBtn>
+    <ModalWrap isPopupVisible={isPopupVisible}>
+      <Content>
+      <CloseBtn isPopupVisible={isPopupVisible} onClick={handleClose}>X</CloseBtn>
       {children}
-    </s.ModalWrap>
+      </Content>
+    </ModalWrap>
   )  : null
 }
 

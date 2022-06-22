@@ -1,8 +1,17 @@
 .MyPostPage {
   display: flex;
+align-items: center;
+width: 100%;
+position: relative;
+.no__posts {
+  display: flex;
   justify-content: center;
-
-  .post-add-btn span {
+  align-items: center;
+  color: white;
+  width: 100vw;
+  font-size: 35px;
+}
+  .post-add-btn  span{
     position: absolute;
     left: 0;
     top: 3rem;
@@ -14,16 +23,22 @@
     color: white;
     background-color: #2D31FA;
     padding: 0.2rem 0.7rem;
-    max-width: 140px;
-    max-height: 35px;
+
     border-radius: 5px;
     cursor: pointer;
+
+    & img {
+      // background: transparent;
+      width: 35px;
+      margin-left: 20px;
+      // background-color: red;
+    }
 
     &:hover {
       background-color: #0105ff;
     }
 
-    &>* {
+    & > * {
       margin: 5px;
     }
   }
@@ -38,22 +53,44 @@
   }
 
   .posts {
-    margin-left: 25px;
-    max-width: 90vw;
+    width: 90vw;
     display: grid;
     grid-auto-flow: column;
     gap: 30px;
-    grid-auto-columns: 29%;
+    grid-auto-columns: 21%;
     overflow-x: auto;
+    transition: color .3s ease;
+    padding-bottom: 6px;
 
     &::-webkit-scrollbar {
+      height: 5px;
       scroll-behavior: smooth;
     }
-}
 
-& > * {
-  margin-bottom: 25px;
-}
+    &:hover {
+
+      &::-webkit-scrollbar-thumb {
+        background: rgb(245, 245, 245);
+      }
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: inherit;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    /* Handle on hover */
+    // &::-webkit-scrollbar-thumb:hover {
+    //   background: rgb(224, 224, 224);
+    // }
+
+  }
+
 }
 
 .page-title {

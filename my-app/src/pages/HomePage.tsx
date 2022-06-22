@@ -2,22 +2,9 @@ import React, { useEffect, useRef } from "react";
 import PostCard from "../components/PostCard/PostCard";
 import { fetchPostsTC } from "../features/PostSlice";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import "./HomePage.scss";
+import "./HomePage.scss"; 
 import Preloader from "../hoc/Preloader";
 const HomePage = () => {
-
-  // const onWheel = e => {
-  //   e.preventDefault();
-  //   const container = scrollRef.current;
-  //   const containerScrollPosition = scrollRef.current.scrollLeft;
-
-  //   container.scrollTo({
-  //     top: 0,
-  //     left: containerScrollPosition + e.deltaY,
-  //   });
-  // };
-
-  // const scrollRef = useRef(null);
 
   const dispatch = useAppDispatch();
   const posts = useAppSelector((state) => state.posts.posts);
@@ -28,17 +15,18 @@ const HomePage = () => {
   }, []);
 
   return (
+
     <div className="HomePage">
-      {isLoading ? (
-        <Preloader />
-      ) : (
+          {isLoading && <Preloader/>}
+      { posts.length === 0 && <div className="no__posts">No posts</div> }
         <div className="posts">
           {posts.map((p) => (
             <PostCard post={p} />
-          ))}
+            ))}
         </div>
-      )}
+      
     </div>
+    
   );
 };
 

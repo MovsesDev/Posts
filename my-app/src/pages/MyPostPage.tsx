@@ -8,6 +8,9 @@ import AddPostForm from "./AddPostForm";
 import "./MyPostPage.scss";
 import Preloader from "../hoc/Preloader";
 import { fetchPostsTC } from "../features/PostSlice";
+import  PlusIcon from "../assets/img/plus-svgrepo-com.svg";
+
+
 
 const MyPostPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -20,7 +23,7 @@ const MyPostPage: React.FC = () => {
   const userId = useAppSelector((state) => state.posts.userId);
   const isLoading = useAppSelector((state) => state.posts.isLoading);
   const navigate = useNavigate();
-
+  const myPosts = [];
   useEffect(() => {
     if (!isAuth) {
       navigate("/login");
@@ -31,30 +34,38 @@ const MyPostPage: React.FC = () => {
     dispatch(fetchPostsTC());
   }, []);
 
-
   const handleAddPost = () => {
     setIsAddPostVisible(true);
   };
+
+  const filteredPosts = posts.filter((p) => isAuth && p.author === userId);
+
   return (
     <React.Fragment>
       {isLoading ? (
         <Preloader />
       ) : (
         <div className="MyPostPage">
+          {filteredPosts.length === 0 && (
+            <div className="no__posts">No posts</div>
+          )}
           <div className="post-add-btn">
-            <span onClick={handleAddPost}>Add post <button>+</button></span>
-            
+            <span onClick={handleAddPost}>
+              Add post <img src={PlusIcon} alt="" />
+            </span>
           </div>
           <div className="posts">
-            {posts.map((p) =>
-              isAuth && p.author === userId ? (
-                <PostCard
-                  setCurrentPost={setCurrentPost}
-                  userId={p.id}
-                  post={p}
-                  setIsEditPostVisible={setIsEditPostVisible}
-                />
-              ) : null
+            {posts.map(
+              (p) =>
+                isAuth &&
+                p.author === userId && (
+                  <PostCard
+                    setCurrentPost={setCurrentPost}
+                    userId={p.id}
+                    post={p}
+                    setIsEditPostVisible={setIsEditPostVisible}
+                  />
+                )
             )}
           </div>
           <Modal

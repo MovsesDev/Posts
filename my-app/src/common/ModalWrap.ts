@@ -23,14 +23,25 @@ export const ModalWrap = styled.div<ModalWrapProps>`
 `}
 `;
 
-export const closeBtn = styled.button<ModalWrapProps>`
+export const Content = styled.div`
+  min-width: 320px;
+  padding: 50px 80px;
+  background-color: #fff;
+  box-shadow: 0 0 5px white;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+`
+
+export const CloseBtn = styled.button<ModalWrapProps>`
 ${props => props.isPopupVisible !== false ?
   `position: absolute;
-  top: 10%;
-  right: 1%;
+  top: 10px;
+  right: 3%;
     padding: 0;
     border: 0;
-    color: white;
+    color: black;
     cursor: pointer;
     background: none;
     font-size: 35px;

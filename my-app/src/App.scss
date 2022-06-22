@@ -4,9 +4,8 @@ padding: 0;
 box-sizing: border-box;
 min-height: 100%;
 overflow: hidden;
-
+position: relative;
 .Pages {
-    padding: 60px 40px;
     max-width: 90%;
     height: 100vh;
     margin: 0 auto;

@@ -45,7 +45,7 @@ const MyPostPage: React.FC = () => {
             <span onClick={handleAddPost}>Add post <button>+</button></span>
             
           </div>
-          <div style={{display: 'flex', alignItems: 'center'}} className="posts">
+          <div className="posts">
             {posts.map((p) =>
               isAuth && p.author === userId ? (
                 <PostCard

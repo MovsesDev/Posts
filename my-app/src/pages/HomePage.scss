@@ -3,12 +3,16 @@
     align-items: center;
 
     .posts {
-        display: flex;
-        align-items: center;
-        overflow-x: scroll;
-
-        & ::-webkit-scrollbar {
-            display: none;
+        margin-left: 25px;
+        max-width: 90vw;
+        display: grid;
+        grid-auto-flow: column;
+        gap: 30px;
+        grid-auto-columns: 29%;
+        overflow-x: auto;
+    
+        &::-webkit-scrollbar {
+          scroll-behavior: smooth;
         }
 
     }

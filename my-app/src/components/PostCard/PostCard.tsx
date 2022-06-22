@@ -18,6 +18,14 @@ interface PostCardProps {
   setIsEditPostVisible?: React.Dispatch<SetStateAction<boolean>>;
 }
 
+const truncate = (str: string, len: number) => {
+  if (str.length > len) {
+    str = str.substring(0, len) + "...";
+    return str
+  }
+  return str
+};
+
 const PostCard: React.FC<PostCardProps> = ({
   post,
   userId,
@@ -27,9 +35,9 @@ const PostCard: React.FC<PostCardProps> = ({
   const dispatch = useAppDispatch();
 
   const handleEdit = (post: Post) => {
-    if ( setCurrentPost && setIsEditPostVisible) {
+    if (setCurrentPost && setIsEditPostVisible) {
       setCurrentPost(post);
-      setIsEditPostVisible(true)
+      setIsEditPostVisible(true);
     }
   };
 
@@ -42,9 +50,11 @@ const PostCard: React.FC<PostCardProps> = ({
       <div className="image">
         <img src={post.image} />
       </div>
-        <div className="post-name">{post.name}</div>
-        <div className="post-desc">{post.description.substring(0, 45) + `...`}</div>
-      
+      <div className="post-name">{truncate(post.name, 15)}</div>
+      <div className="post-desc">
+        {truncate(post.description, 45)}
+      </div>
+
       {userId && (
         <div className="buttons">
           <button onClick={() => handleEdit(post)}>Edit</button>

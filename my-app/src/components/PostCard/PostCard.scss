@@ -1,18 +1,20 @@
 .PostCard {
   display: flex;
   flex-direction: column;
-  height: 420px;
   align-items: center;
   border: 2px solid rgb(149, 137, 137);
   border-radius: 20px;
   background-color: rgb(167, 128, 128);
   overflow: hidden;
-  margin: 0 55px;
-  padding: 10px 50px;
+  padding: 5px;
   object-fit: contain;
-  width: 100%;
+  width: 19vw;
   user-select: none;
-  overflow-x: visible;
+
+  @media screen and (max-width: 750px) {
+    width: 28vw;
+    margin-right: 250px;
+  }
 
   .post-name {
     margin-top: 25px;
@@ -25,7 +27,6 @@
   }
 
   .image {
-
     img {
       width: 10rem;
       height: 10rem;
@@ -36,8 +37,6 @@
   .buttons {
     margin-top: 25px;
     display: flex;
-    width: 100%;
-    justify-content: center;
     button {
       margin: 0 15px;
       border: 0;

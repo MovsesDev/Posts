@@ -1,12 +1,11 @@
 .MyPostPage {
-  position: relative;
   display: flex;
   justify-content: center;
 
   .post-add-btn span {
     position: absolute;
     left: 0;
-    top: 1rem;
+    top: 3rem;
     display: flex;
     align-items: center;
     text-align: center;
@@ -15,7 +14,7 @@
     color: white;
     background-color: #2D31FA;
     padding: 0.2rem 0.7rem;
-    max-width: 150px;
+    max-width: 140px;
     max-height: 35px;
     border-radius: 5px;
     cursor: pointer;
@@ -39,14 +38,21 @@
   }
 
   .posts {
-height: 100vh;
-display: flex;
-align-items: center;
-overflow-x: scroll;
-  
-&::-webkit-scrollbar {
-  display: none;
+    margin-left: 25px;
+    max-width: 90vw;
+    display: grid;
+    grid-auto-flow: column;
+    gap: 30px;
+    grid-auto-columns: 29%;
+    overflow-x: auto;
+
+    &::-webkit-scrollbar {
+      scroll-behavior: smooth;
+    }
 }
+
+& > * {
+  margin-bottom: 25px;
 }
 }
 
